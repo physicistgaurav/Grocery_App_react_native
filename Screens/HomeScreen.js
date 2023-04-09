@@ -30,37 +30,37 @@ const HomeScreen = () => {
       id: 1,
       name: "Organic Bananas",
       image: require("../assets/bananarb.png"),
-      price: 1.0,
+      price: 140,
     },
     {
       id: 2,
       name: "Peach",
       image: require("../assets/peachrb.png"),
-      price: 1.99,
+      price: 220,
     },
     {
       id: 3,
       name: "Apple",
       image: require("../assets/applerb.png"),
-      price: 2.05,
+      price: 450,
     },
     {
       id: 4,
       name: "Mango",
       image: require("../assets/mango.png"),
-      price: 4.0,
+      price: 300,
     },
     {
       id: 5,
       name: "Water Melon",
       image: require("../assets/melon.png"),
-      price: 3.57,
+      price: 180,
     },
     {
       id: 6,
       name: "Oranges",
       image: require("../assets/orangesrb.png"),
-      price: 2.99,
+      price: 170,
     },
   ];
 
@@ -148,7 +148,7 @@ const HomeScreen = () => {
           <View style={styles.box}>
             <Image style={styles.cardImage} source={item.image} />
             <Text style={styles.cardText}>{item.name}</Text>
-            <Text style={styles.cardPrice}>{item.price}</Text>
+            <Text style={styles.cardPrice}>Rs. {item.price}</Text>
           </View>
         )}
         keyExtractor={(item, index) => index.toString()}
@@ -196,10 +196,14 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 16,
     marginBottom: 5,
+    alignSelf: "flex-start",
+    paddingLeft: 10,
   },
   cardPrice: {
     fontSize: 14,
-    color: "#aaa",
+    color: "#232d0d",
+    alignSelf: "flex-start",
+    paddingLeft: 10,
   },
 
   headerText: {
