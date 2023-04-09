@@ -87,6 +87,7 @@ const CartScreen = () => {
             >
               {item.description}
             </Text>
+
             <Text
               style={{
                 fontSize: 18,

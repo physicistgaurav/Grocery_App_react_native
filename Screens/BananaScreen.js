@@ -21,6 +21,14 @@ const MyStatusBar = ({ backgroundColor, ...props }) => (
   </View>
 );
 
+const BananaInfo = [
+  {
+    name: "Bananas Organic",
+    price: 140,
+    description: "organic",
+  },
+];
+
 const BananaScreen = ({ navigation }) => {
   return (
     <>
@@ -34,7 +42,7 @@ const BananaScreen = ({ navigation }) => {
         />
         <View style={styles.priceContainer}>
           <View style={[styles.priceButton, { flexDirection: "row" }]}>
-            <Text style={styles.priceText}>Rs. 140</Text>
+            <Text style={styles.priceText}> Rs. 140 </Text>
           </View>
           <FontAwesome
             name="heart"
