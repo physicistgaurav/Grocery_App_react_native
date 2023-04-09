@@ -8,7 +8,7 @@ import {
   ScrollView,
   TouchableOpacity,
 } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { FontAwesome } from "react-native-vector-icons";
 import ProgressCircle from "react-native-progress-circle";
@@ -21,7 +21,7 @@ const MyStatusBar = ({ backgroundColor, ...props }) => (
   </View>
 );
 
-const AppleScreen = () => {
+const AppleScreen = ({ navigation }) => {
   return (
     <>
       <MyStatusBar backgroundColor="#5E8D48" barStyle="light-content" />
@@ -122,7 +122,10 @@ const AppleScreen = () => {
           </ProgressCircle>
         </View>
 
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity
+          onPress={() => navigation.navigate("cart")}
+          style={styles.button}
+        >
           <Text style={styles.text}>+ Add to Cart</Text>
         </TouchableOpacity>
       </View>

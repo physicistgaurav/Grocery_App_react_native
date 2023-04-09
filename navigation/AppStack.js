@@ -1,6 +1,7 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import AppleScreen from "../Screens/AppleScreen";
 import BananaScreen from "../Screens/BananaScreen";
+import CartScreen from "../Screens/CartScreen";
 import HomeScreen from "../Screens/HomeScreen";
 import MangoScreen from "../Screens/MangoScreen";
 import OrangeScreen from "../Screens/OrangeScreen";
@@ -45,6 +46,11 @@ const AppStack = () => {
       <Stack.Screen
         name="oranges"
         component={OrangeScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="cart"
+        component={CartScreen}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>

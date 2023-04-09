@@ -21,7 +21,7 @@ const MyStatusBar = ({ backgroundColor, ...props }) => (
   </View>
 );
 
-const PeachScreen = () => {
+const PeachScreen = ({ navigation }) => {
   return (
     <>
       <MyStatusBar backgroundColor="#5E8D48" barStyle="light-content" />
@@ -122,7 +122,10 @@ const PeachScreen = () => {
           </ProgressCircle>
         </View>
 
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity
+          onPress={() => navigation.navigate("cart")}
+          style={styles.button}
+        >
           <Text style={styles.text}>+ Add to Cart</Text>
         </TouchableOpacity>
       </View>
