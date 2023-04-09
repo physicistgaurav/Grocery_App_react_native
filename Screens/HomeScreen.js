@@ -23,7 +23,52 @@ const HomeScreen = () => {
     "Popppins-Regular": require("../assets/fonts/Poppins-Regular.ttf"),
   });
 
-  const [search, setSearch] = useState("");
+  // search items
+
+  const items = [
+    {
+      id: 1,
+      name: "Organic Bananas",
+      image: require("../assets/bananarb.png"),
+      price: 1.0,
+    },
+    {
+      id: 2,
+      name: "Peach",
+      image: require("../assets/peachrb.png"),
+      price: 1.99,
+    },
+    {
+      id: 3,
+      name: "Apple",
+      image: require("../assets/applerb.png"),
+      price: 2.05,
+    },
+    {
+      id: 4,
+      name: "Mango",
+      image: require("../assets/mango.png"),
+      price: 4.0,
+    },
+    {
+      id: 5,
+      name: "Water Melon",
+      image: require("../assets/melon.png"),
+      price: 3.57,
+    },
+    {
+      id: 6,
+      name: "Oranges",
+      image: require("../assets/orangesrb.png"),
+      price: 2.99,
+    },
+  ];
+
+  const [query, setQuery] = useState("");
+
+  const filteredItems = items.filter((item) =>
+    item.name.toLowerCase().includes(query.toLowerCase())
+  );
 
   useEffect(() => {
     if (!fontsLoaded) {
@@ -68,8 +113,8 @@ const HomeScreen = () => {
             <TextInput
               placeholder="What are you looking for?"
               style={styles.inputBox}
-              value={search}
-              onChangeText={(text) => setSearch(text)}
+              value={query}
+              onChangeText={(text) => setQuery(text)}
             />
             <Icon name="sliders" size={30} color="grey" style={styles.icon} />
           </View>
@@ -96,64 +141,19 @@ const HomeScreen = () => {
           />
         </SafeAreaView>
       </View>
-      <View style={{ flexDirection: "column" }}>
-        <View style={{ flexDirection: "row" }}>
-          <View style={styles.box}>
-            <Image
-              style={styles.cardImage}
-              source={require("../assets/bananarb.png")}
-            />
-            <Text style={styles.cardText}>Organic Bananas</Text>
-            <Text style={styles.cardPrice}>$1.00</Text>
-          </View>
-          <View style={styles.box}>
-            <Image
-              style={styles.cardImage}
-              source={require("../assets/peachrb.png")}
-            />
-            <Text style={styles.cardText}>Peach</Text>
-            <Text style={styles.cardPrice}>$1.99</Text>
-          </View>
-        </View>
 
-        <View style={{ flexDirection: "row" }}>
+      <FlatList
+        data={filteredItems}
+        renderItem={({ item }) => (
           <View style={styles.box}>
-            <Image
-              style={styles.cardImage}
-              source={require("../assets/applerb.png")}
-            />
-            <Text style={styles.cardText}>Apple</Text>
-            <Text style={styles.cardPrice}>$2.05</Text>
+            <Image style={styles.cardImage} source={item.image} />
+            <Text style={styles.cardText}>{item.name}</Text>
+            <Text style={styles.cardPrice}>{item.price}</Text>
           </View>
-          <View style={styles.box}>
-            <Image
-              style={styles.cardImage}
-              source={require("../assets/mango.png")}
-            />
-            <Text style={styles.cardText}>Mango</Text>
-            <Text style={styles.cardPrice}>$4.00</Text>
-          </View>
-        </View>
-
-        <View style={{ flexDirection: "row" }}>
-          <View style={styles.box}>
-            <Image
-              style={styles.cardImage}
-              source={require("../assets/melon.png")}
-            />
-            <Text style={styles.cardText}>Water Melon</Text>
-            <Text style={styles.cardPrice}>$3.57</Text>
-          </View>
-          <View style={styles.box}>
-            <Image
-              style={styles.cardImage}
-              source={require("../assets/orangesrb.png")}
-            />
-            <Text style={styles.cardText}>Oranges</Text>
-            <Text style={styles.cardPrice}>$2.99</Text>
-          </View>
-        </View>
-      </View>
+        )}
+        keyExtractor={(item, index) => index.toString()}
+        numColumns={2}
+      />
     </ScrollView>
   );
 };
@@ -165,6 +165,43 @@ const styles = StyleSheet.create({
     margin: 10,
     padding: 10,
   },
+
+  container: {
+    flex: 1,
+    alignItems: "center",
+    marginTop: 50,
+  },
+  searchInput: {
+    borderWidth: 1,
+    borderColor: "#ccc",
+    borderRadius: 5,
+    padding: 10,
+    width: "90%",
+    marginBottom: 20,
+  },
+  box: {
+    borderWidth: 1,
+    borderColor: "#ccc",
+    borderRadius: 5,
+    padding: 10,
+    margin: 5,
+    alignItems: "center",
+  },
+  cardImage: {
+    width: 100,
+    height: 100,
+    marginBottom: 10,
+  },
+  cardText: {
+    fontWeight: "bold",
+    fontSize: 16,
+    marginBottom: 5,
+  },
+  cardPrice: {
+    fontSize: 14,
+    color: "#aaa",
+  },
+
   headerText: {
     fontSize: 32,
     fontWeight: "500",
@@ -238,26 +275,26 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     marginHorizontal: 10,
   },
-  cardImage: {
-    width: 80,
-    height: 80,
-  },
-  cardText: {
-    marginTop: 20,
-    fontWeight: "bold",
-    textAlign: "flex-start",
-    alignSelf: "flex-start",
-    fontFamily: "Ubuntu-Regular",
-    fontSize: 18,
-  },
-  cardPrice: {
-    marginTop: 10,
-    fontWeight: "bold",
-    textAlign: "center",
-    color: "green",
-    textAlign: "flex-start",
-    alignSelf: "flex-start",
-    fontFamily: "Ubuntu-Regular",
-    fontSize: 18,
-  },
+  // cardImage: {
+  //   width: 80,
+  //   height: 80,
+  // },
+  // cardText: {
+  //   marginTop: 20,
+  //   fontWeight: "bold",
+  //   textAlign: "flex-start",
+  //   alignSelf: "flex-start",
+  //   fontFamily: "Ubuntu-Regular",
+  //   fontSize: 18,
+  // },
+  // cardPrice: {
+  //   marginTop: 10,
+  //   fontWeight: "bold",
+  //   textAlign: "center",
+  //   color: "green",
+  //   textAlign: "flex-start",
+  //   alignSelf: "flex-start",
+  //   fontFamily: "Ubuntu-Regular",
+  //   fontSize: 18,
+  // },
 });
