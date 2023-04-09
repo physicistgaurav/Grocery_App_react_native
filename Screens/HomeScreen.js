@@ -239,8 +239,8 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
   },
   cardImage: {
-    // width: 150,
-    // height: 100,
+    width: 80,
+    height: 80,
   },
   cardText: {
     marginTop: 20,
