@@ -10,14 +10,16 @@ import {
   TouchableOpacity,
   FlatList,
   Dimensions,
+  StatusBar,
 } from "react-native";
+
 import { SafeAreaView } from "react-native-safe-area-context";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { FontAwesome } from "react-native-vector-icons";
 
 const SCREEN_WIDTH = Dimensions.get("window").width;
 
-const HomeScreen = () => {
+const HomeScreen = ({ navigation }) => {
   const [fontsLoaded] = useFonts({
     "Ubuntu-Regular": require("../assets/fonts/Ubuntu-Regular.ttf"),
     "Popppins-Regular": require("../assets/fonts/Poppins-Regular.ttf"),
@@ -25,48 +27,54 @@ const HomeScreen = () => {
 
   // search items
 
-  const items = [
+  const FruitItems = [
     {
       id: 1,
-      name: "Organic Bananas",
+      name: "Bananas",
       image: require("../assets/bananarb.png"),
       price: 140,
+      screenName: "banana",
     },
     {
       id: 2,
       name: "Peach",
       image: require("../assets/peachrb.png"),
       price: 220,
+      screenName: "peach",
     },
     {
       id: 3,
       name: "Apple",
       image: require("../assets/applerb.png"),
       price: 450,
+      screenName: "apple",
     },
     {
       id: 4,
       name: "Mango",
       image: require("../assets/mango.png"),
       price: 300,
+      screenName: "mango",
     },
     {
       id: 5,
       name: "Water Melon",
       image: require("../assets/melon.png"),
       price: 180,
+      screenName: "melon",
     },
     {
       id: 6,
       name: "Oranges",
       image: require("../assets/orangesrb.png"),
       price: 170,
+      screenName: "oranges",
     },
   ];
 
   const [query, setQuery] = useState("");
 
-  const filteredItems = items.filter((item) =>
+  const filteredItems = FruitItems.filter((item) =>
     item.name.toLowerCase().includes(query.toLowerCase())
   );
 
@@ -88,73 +96,89 @@ const HomeScreen = () => {
     { id: 5, label: "Drinks", image: require("../assets/poinsettia.png") },
   ];
 
-  return (
-    <ScrollView>
-      <View>
-        <SafeAreaView style={styles.mainBody}>
-          <View style={styles.header}>
-            <Text style={styles.headerText}>
-              Good for you. {"\n"}Great for you.
-            </Text>
-            <Icon
-              name="bell"
-              size={30}
-              color="grey"
-              style={{ paddingRight: 15 }}
-            />
-          </View>
-          <View style={styles.searchContainer}>
-            <FontAwesome
-              name="search"
-              size={24}
-              color="black"
-              style={styles.searchIcon}
-            />
-            <TextInput
-              placeholder="What are you looking for?"
-              style={styles.inputBox}
-              value={query}
-              onChangeText={(text) => setQuery(text)}
-            />
-            <Icon name="sliders" size={30} color="grey" style={styles.icon} />
-          </View>
-          <Text style={styles.bodyText}>Categories</Text>
-          <FlatList
-            horizontal={true}
-            showsHorizontalScrollIndicator={false}
-            contentContainerStyle={styles.categoriesBar}
-            data={categories}
-            keyExtractor={(item) => item.id.toString()}
-            renderItem={({ item }) => (
-              <View style={{ flexDirection: "column" }}>
-                <TouchableOpacity>
-                  <View style={styles.barCard}>
-                    <Image
-                      style={{ width: 50, height: 50 }}
-                      source={item.image}
-                    />
-                  </View>
-                </TouchableOpacity>
-                <Text style={styles.categoryLabel}>{item.label}</Text>
-              </View>
-            )}
-          />
-        </SafeAreaView>
-      </View>
+  const MyStatusBar = ({ backgroundColor, ...props }) => (
+    <View style={[styles.statusBar, { backgroundColor }]}>
+      <SafeAreaView>
+        <StatusBar translucent backgroundColor={backgroundColor} {...props} />
+      </SafeAreaView>
+    </View>
+  );
 
-      <FlatList
-        data={filteredItems}
-        renderItem={({ item }) => (
-          <View style={styles.box}>
-            <Image style={styles.cardImage} source={item.image} />
-            <Text style={styles.cardText}>{item.name}</Text>
-            <Text style={styles.cardPrice}>Rs. {item.price}</Text>
-          </View>
-        )}
-        keyExtractor={(item, index) => index.toString()}
-        numColumns={2}
-      />
-    </ScrollView>
+  return (
+    <>
+      <MyStatusBar backgroundColor="#5E8D48" barStyle="light-content" />
+      <ScrollView>
+        <View>
+          <SafeAreaView style={styles.mainBody}>
+            <View style={styles.header}>
+              <Text style={styles.headerText}>
+                Good for you. {"\n"}Great for you.
+              </Text>
+              <Icon
+                name="bell"
+                size={30}
+                color="grey"
+                style={{ paddingRight: 15 }}
+              />
+            </View>
+            <View style={styles.searchContainer}>
+              <FontAwesome
+                name="search"
+                size={24}
+                color="black"
+                style={styles.searchIcon}
+              />
+              <TextInput
+                placeholder="What are you looking for?"
+                style={styles.inputBox}
+                value={query}
+                onChangeText={(text) => setQuery(text)}
+              />
+              <Icon name="sliders" size={30} color="grey" style={styles.icon} />
+            </View>
+            <Text style={styles.bodyText}>Categories</Text>
+            <FlatList
+              horizontal={true}
+              showsHorizontalScrollIndicator={false}
+              contentContainerStyle={styles.categoriesBar}
+              data={categories}
+              keyExtractor={(item) => item.id.toString()}
+              renderItem={({ item }) => (
+                <View style={{ flexDirection: "column" }}>
+                  <TouchableOpacity>
+                    <View style={styles.barCard}>
+                      <Image
+                        style={{ width: 50, height: 50 }}
+                        source={item.image}
+                      />
+                    </View>
+                  </TouchableOpacity>
+                  <Text style={styles.categoryLabel}>{item.label}</Text>
+                </View>
+              )}
+            />
+          </SafeAreaView>
+        </View>
+
+        <FlatList
+          data={filteredItems}
+          renderItem={({ item }) => (
+            <TouchableOpacity
+              style={styles.box}
+              onPress={() => navigation.navigate(item.screenName)}
+            >
+              <View style={styles.box}>
+                <Image style={styles.cardImage} source={item.image} />
+                <Text style={styles.cardText}>{item.name}</Text>
+                <Text style={styles.cardPrice}>Rs. {item.price}</Text>
+              </View>
+            </TouchableOpacity>
+          )}
+          keyExtractor={(item, index) => index.toString()}
+          numColumns={2}
+        />
+      </ScrollView>
+    </>
   );
 };
 
