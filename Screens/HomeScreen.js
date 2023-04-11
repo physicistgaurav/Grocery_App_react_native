@@ -16,6 +16,9 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { FontAwesome } from "react-native-vector-icons";
+import { useSelector } from "react-redux";
+
+import { selectProductItems } from "../store/productSlice";
 
 const SCREEN_WIDTH = Dimensions.get("window").width;
 
@@ -24,6 +27,8 @@ const HomeScreen = ({ navigation }) => {
     "Ubuntu-Regular": require("../assets/fonts/Ubuntu-Regular.ttf"),
     "Popppins-Regular": require("../assets/fonts/Poppins-Regular.ttf"),
   });
+
+  const products = useSelector((state) => state.product.productItems);
 
   // search items
 
@@ -74,7 +79,7 @@ const HomeScreen = ({ navigation }) => {
 
   const [query, setQuery] = useState("");
 
-  const filteredItems = FruitItems.filter((item) =>
+  const filteredItems = products.filter((item) =>
     item.name.toLowerCase().includes(query.toLowerCase())
   );
 
