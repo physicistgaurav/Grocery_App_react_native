@@ -34,7 +34,7 @@ If you'd like to contribute to the development of FruitsApp React Native, you're
 
 <h2>Credits</h2>
 
-The design of FruitsApp React Native is based on a Dribbble.
+The design of FruitsApp React Native is based on a Dribbble, but with little customization. Functionalities idea are self thought.
 
 
 ![](/ui1.jpg)
