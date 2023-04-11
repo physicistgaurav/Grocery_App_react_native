@@ -39,6 +39,6 @@ The design of FruitsApp React Native is based on a Dribbble, but with little cus
 
 ![](/ui1.jpg)
 
-![](/ui2.jpg)
+![](/fui2.jpg)
 
-![](/ui3.jpg)
+![](/fui3.jpg)
