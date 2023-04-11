@@ -16,6 +16,7 @@
     "@fortawesome/react-native-fontawesome": "^0.3.0",
     "@react-navigation/native": "^6.1.6",
     "@react-navigation/native-stack": "^6.9.12",
+    "@reduxjs/toolkit": "^1.9.3",
     "expo": "~48.0.10",
     "expo-app-loading": "^2.1.1",
     "expo-font": "~11.1.1",

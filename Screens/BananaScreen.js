@@ -12,6 +12,7 @@ import React from "react";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { FontAwesome } from "react-native-vector-icons";
 import ProgressCircle from "react-native-progress-circle";
+import { useDispatch, useSelector } from "react-redux";
 
 const MyStatusBar = ({ backgroundColor, ...props }) => (
   <View style={[styles.statusBar, { backgroundColor }]}>
@@ -21,29 +22,32 @@ const MyStatusBar = ({ backgroundColor, ...props }) => (
   </View>
 );
 
-const BananaInfo = {
-  name: "Bananas Organic",
-  price: 140,
-  type: "organic",
-  rating: 4.8,
-  description:
-    "The banana pulp contains minerals and vitamins useful and necessary for the human body: Vitamins of group B,E,C.",
-};
-
 const BananaScreen = ({ navigation }) => {
+  const BananaInfo = {
+    id: 1,
+    name: "Bananas Organic",
+    price: 140,
+    type: "organic",
+    rating: 4.8,
+    description:
+      "The banana pulp contains minerals and vitamins useful and necessary for the human body: Vitamins of group B,E,C.",
+    myImage: require("../assets/bananarb2.png"),
+  };
+
+  const cart = useSelector((state) => state.cart.cart);
+  console.log(cart);
+  const dispatch = useDispatch();
+
   return (
     <>
       <MyStatusBar backgroundColor="#5E8D48" barStyle="light-content" />
 
       <View>
         <SafeAreaView style={styles.mainBody}></SafeAreaView>
-        <Image
-          style={styles.mainImage}
-          source={require("../assets/bananarb2.png")}
-        />
+        <Image style={styles.mainImage} source={BananaInfo.myImage} />
         <View style={styles.priceContainer}>
           <View style={[styles.priceButton, { flexDirection: "row" }]}>
-            <Text style={styles.priceText}> Rs. {BananaInfo.price} </Text>
+            <Text style={styles.priceText}> रु {BananaInfo.price} </Text>
           </View>
           <FontAwesome
             name="heart"
@@ -129,6 +133,7 @@ const BananaScreen = ({ navigation }) => {
         </View>
 
         <TouchableOpacity
+          key={BananaInfo.id}
           onPress={() => navigation.navigate("cart")}
           style={styles.button}
         >

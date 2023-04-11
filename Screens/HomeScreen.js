@@ -170,7 +170,7 @@ const HomeScreen = ({ navigation }) => {
               <View style={styles.box}>
                 <Image style={styles.cardImage} source={item.image} />
                 <Text style={styles.cardText}>{item.name}</Text>
-                <Text style={styles.cardPrice}>Rs. {item.price}</Text>
+                <Text style={styles.cardPrice}>रु {item.price}</Text>
               </View>
             </TouchableOpacity>
           )}
