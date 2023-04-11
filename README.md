@@ -2,7 +2,7 @@
 
 
 
-FruitsApp React Native is a simple mobile application built with React Native that allows users to browse and search for different types of fruits, add them to their cart, and manage their cart. The app is designed to be simple, user-friendly, and easy to navigate.
+FruitsApp React Native is a simple mobile application built with React Native that allows users to browse and search for different types of fruits, add them to their cart, and manage their cart for prices and details in the cart. The app is designed to be simple, user-friendly, and easy to navigate.
 Features
 
 <h2>The app comes with the following features:</h2>
