@@ -34,11 +34,8 @@ If you'd like to contribute to the development of FruitsApp React Native, you're
 
 <h2>Credits</h2>
 
-The design of FruitsApp React Native is based on a Dribbble design by Janez Puhan. Special thanks to Janez for providing the inspiration for this project.
+The design of FruitsApp React Native is based on a Dribbble.
 
-<h2>License</h2>
-
-FruitsApp React Native is licensed under the MIT License. See LICENSE for more information.
 
 ![](/ui1.jpg)
 
