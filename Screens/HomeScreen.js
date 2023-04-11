@@ -218,16 +218,17 @@ const styles = StyleSheet.create({
   },
   cardText: {
     fontWeight: "bold",
-    fontSize: 16,
+    fontSize: 18,
     marginBottom: 5,
     alignSelf: "flex-start",
     paddingLeft: 10,
   },
   cardPrice: {
-    fontSize: 14,
-    color: "#232d0d",
+    fontSize: 16,
+    color: "#e28743",
     alignSelf: "flex-start",
     paddingLeft: 10,
+    fontWeight: "bold",
   },
 
   headerText: {

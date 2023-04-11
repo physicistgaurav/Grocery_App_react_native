@@ -21,13 +21,14 @@ const MyStatusBar = ({ backgroundColor, ...props }) => (
   </View>
 );
 
-const BananaInfo = [
-  {
-    name: "Bananas Organic",
-    price: 140,
-    description: "organic",
-  },
-];
+const BananaInfo = {
+  name: "Bananas Organic",
+  price: 140,
+  type: "organic",
+  rating: 4.8,
+  description:
+    "The banana pulp contains minerals and vitamins useful and necessary for the human body: Vitamins of group B,E,C.",
+};
 
 const BananaScreen = ({ navigation }) => {
   return (
@@ -42,7 +43,7 @@ const BananaScreen = ({ navigation }) => {
         />
         <View style={styles.priceContainer}>
           <View style={[styles.priceButton, { flexDirection: "row" }]}>
-            <Text style={styles.priceText}> Rs. 140 </Text>
+            <Text style={styles.priceText}> Rs. {BananaInfo.price} </Text>
           </View>
           <FontAwesome
             name="heart"
@@ -60,7 +61,7 @@ const BananaScreen = ({ navigation }) => {
           }}
         >
           {" "}
-          Bananas Organic
+          {BananaInfo.name}
         </Text>
 
         <View style={styles.priceContainer}>
@@ -71,7 +72,7 @@ const BananaScreen = ({ navigation }) => {
               color="grey"
               style={styles.searchIcon}
             />
-            <Text style={styles.ratingText}>4.8 Rating</Text>
+            <Text style={styles.ratingText}>{BananaInfo.rating} Rating</Text>
           </View>
 
           <FontAwesome
@@ -81,10 +82,7 @@ const BananaScreen = ({ navigation }) => {
             style={styles.searchIcon}
           />
         </View>
-        <Text style={styles.bodyText}>
-          The banana pulp contains minerals and vitamins useful and necessary
-          for the human body: vitamins of groyp B, E,C
-        </Text>
+        <Text style={styles.bodyText}>{BananaInfo.description}</Text>
 
         <View
           style={{
