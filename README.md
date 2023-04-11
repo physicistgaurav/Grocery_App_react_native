@@ -1,8 +1,8 @@
-<h1>FruitsApp React Native</h1>
+<h1>GroceryApp React Native</h1>
 
 
 
-FruitsApp React Native is a simple mobile application built with React Native that allows users to browse and search for different types of fruits, add them to their cart, and manage their cart for prices and details in the cart. The app is designed to be simple, user-friendly, and easy to navigate.
+GroceryApp React Native is a simple mobile application built with React Native that allows users to browse and search for different types of fruits,vegtables, nuts and drink and add them to their cart, and manage their cart for prices and details in the cart. The app is designed to be simple, user-friendly, and easy to navigate.For the time being, only fruits dataset has been used
 Features
 
 <h2>The app comes with the following features:</h2>
