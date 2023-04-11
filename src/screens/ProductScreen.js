@@ -7,7 +7,6 @@ import {
   StatusBar,
   TouchableOpacity,
   ScrollView,
-  Pressable,
 } from "react-native";
 import React from "react";
 
@@ -36,6 +35,26 @@ const ProductScreen = ({ navigation, route }) => {
   const products = useSelector(selectProductItems);
 
   const productDetail = products?.find((el) => el?.id === params.productId);
+
+  const dispatch = useDispatch();
+
+  const addItemToCart = (item) => {
+    dispatch(addToCart(item));
+  };
+  const removeItemFromCart = (item) => {
+    dispatch(removeFromCart(item));
+  };
+
+  const increaseQuantity = (item) => {
+    dispatch(incrementQuantity(item));
+  };
+  const decreaseQuantity = (item) => {
+    if (item.quantity == 1) {
+      dispatch(removeFromCart(item));
+    } else {
+      dispatch(decrementQuantity(item));
+    }
+  };
 
   return (
     <>
@@ -97,7 +116,7 @@ const ProductScreen = ({ navigation, route }) => {
             }}
           >
             <ProgressCircle
-              percent={75}
+              percent={productDetail.progress1}
               radius={50}
               borderWidth={8}
               color="#70ba8c"
@@ -105,11 +124,11 @@ const ProductScreen = ({ navigation, route }) => {
               bgColor="#fff"
               style={styles.circe}
             >
-              <Text style={{ fontSize: 18 }}>{"1.1g"}</Text>
+              <Text style={{ fontSize: 18 }}>{productDetail.vitaminA}</Text>
             </ProgressCircle>
 
             <ProgressCircle
-              percent={80}
+              percent={productDetail.progress2}
               radius={50}
               borderWidth={8}
               color="#3399FF"
@@ -117,11 +136,11 @@ const ProductScreen = ({ navigation, route }) => {
               bgColor="#fff"
               style={styles.circe}
             >
-              <Text style={{ fontSize: 18 }}>{"23g"}</Text>
+              <Text style={{ fontSize: 18 }}>{productDetail.vitaminB}</Text>
             </ProgressCircle>
 
             <ProgressCircle
-              percent={90}
+              percent={productDetail.progress3}
               radius={50}
               borderWidth={8}
               color="#f2e4af"
@@ -129,9 +148,15 @@ const ProductScreen = ({ navigation, route }) => {
               bgColor="#fff"
               style={styles.circe}
             >
-              <Text style={{ fontSize: 18 }}>{"96"}</Text>
+              <Text style={{ fontSize: 18 }}>{productDetail.vitaminC}</Text>
             </ProgressCircle>
           </View>
+          <TouchableOpacity
+            onPress={() => addItemToCart(productDetail)}
+            style={styles.button}
+          >
+            <Text style={styles.text}>+ Add to Cart</Text>
+          </TouchableOpacity>
         </View>
       </ScrollView>
     </>

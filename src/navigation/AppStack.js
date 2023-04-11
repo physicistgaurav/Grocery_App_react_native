@@ -8,10 +8,20 @@ import OrangeScreen from "../screens/OrangeScreen";
 import PeachScreen from "../screens/PeachScreen";
 import ProductScreen from "../screens/ProductScreen";
 import WaterMelonScreen from "../screens/WaterMelonScreen";
+import { useNavigation } from "@react-navigation/native";
+
+import { Text, TouchableOpacity } from "react-native";
+
+import { AntDesign } from "@expo/vector-icons";
+import { View } from "react-native";
+import { useSelector } from "react-redux";
+import { selectCartItemsCount } from "../store/cartSlice";
 
 const Stack = createNativeStackNavigator();
 
 const AppStack = () => {
+  const navigation = useNavigation();
+  const cartItemsCount = useSelector(selectCartItemsCount);
   return (
     <Stack.Navigator>
       <Stack.Screen
@@ -22,7 +32,34 @@ const AppStack = () => {
       <Stack.Screen
         name="ProductDetail"
         component={ProductScreen}
-        options={{ headerShown: false }}
+        options={{
+          headerShown: true,
+          headerRight: () => (
+            <TouchableOpacity onPress={() => navigation.navigate("cart")}>
+              <View style={{ position: "relative" }}>
+                <AntDesign name="shoppingcart" size={24} color="black" />
+                <View
+                  style={{
+                    position: "absolute",
+                    right: -10,
+                    top: -10,
+                    backgroundColor: "red",
+                    height: 20,
+                    width: 20,
+                    borderRadius: "50%",
+                    flex: 1,
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <Text style={{ fontSize: 12, color: "white" }}>
+                    {cartItemsCount}
+                  </Text>
+                </View>
+              </View>
+            </TouchableOpacity>
+          ),
+        }}
       />
       <Stack.Screen
         name="apple"
@@ -57,7 +94,7 @@ const AppStack = () => {
       <Stack.Screen
         name="cart"
         component={CartScreen}
-        options={{ headerShown: false }}
+        options={{ headerShown: true }}
       />
     </Stack.Navigator>
   );

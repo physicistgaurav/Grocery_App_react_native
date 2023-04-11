@@ -10,6 +10,16 @@ import {
 } from "react-native";
 import React from "react";
 import { FontAwesome } from "react-native-vector-icons";
+import { useDispatch, useSelector } from "react-redux";
+import { selectCartItems } from "../store/cartSlice";
+
+import {
+  addToCart,
+  decrementQuantity,
+  incrementQuantity,
+  removeFromCart,
+} from "../store/cartSlice";
+import { selectProductItems } from "../store/productSlice";
 
 const MyStatusBar = ({ backgroundColor, ...props }) => (
   <View style={[styles.statusBar, { backgroundColor }]}>
@@ -20,6 +30,8 @@ const MyStatusBar = ({ backgroundColor, ...props }) => (
 );
 
 const CartScreen = () => {
+  const cartItems = useSelector(selectCartItems);
+
   const [data, setData] = React.useState([
     {
       id: 1,
@@ -59,34 +71,50 @@ const CartScreen = () => {
     },
   ]);
 
+  const dispatch = useDispatch();
+
+  const cart = useSelector((state) => state.cart.cart);
+
+  const addItemToCart = (item) => {
+    dispatch(addToCart(item));
+  };
+  const removeItemFromCart = (item) => {
+    dispatch(removeFromCart(item));
+  };
+  const increaseQuantity = (item) => {
+    dispatch(incrementQuantity(item));
+  };
+  const decreaseQuantity = (item) => {
+    if (item.quantity == 1) {
+      dispatch(removeFromCart(item));
+    } else {
+      dispatch(decrementQuantity(item));
+    }
+  };
+  const total = cartItems.reduce((accumulator, currentItem) => {
+    return accumulator + currentItem.price * currentItem.quantity;
+  }, 0);
   const onDelete = (id) => {
     setData((prevData) => prevData.filter((item) => item.id !== id));
   };
 
   const renderItems = ({ item }) => {
     return (
-      <View style={styles.FLatListContainer}>
+      <View style={styles.FlatListContainer}>
         <View style={{ flexDirection: "row", alignItems: "center" }}>
-          <Image style={styles.imageStyle} source={item.imageloc} />
+          <Image style={styles.imageStyle} source={item.images[0]} />
           <View style={{ marginLeft: 16 }}>
-            <Text
-              style={{
-                fontSize: 24,
-                fontWeight: "bold",
-                fontFamily: "Ubuntu-Regular",
-              }}
-            >
-              {item.name}
-            </Text>
-            <Text
-              style={{
-                fontSize: 18,
-                fontWeight: "400",
-                // fontFamily: "Ubuntu-Regular",
-              }}
-            >
-              {item.description}
-            </Text>
+            <View style={{ width: 100 }}>
+              <Text
+                style={{
+                  fontSize: 24,
+                  fontWeight: "bold",
+                  fontFamily: "Ubuntu-Regular",
+                }}
+              >
+                {item.name}
+              </Text>
+            </View>
 
             <Text
               style={{
@@ -102,21 +130,47 @@ const CartScreen = () => {
                 fontSize: 18,
                 fontWeight: "400",
                 fontFamily: "Ubuntu-Regular",
+                color: "#dc364b",
               }}
             >
-              Rs.{item.price}
+              Rs.{item.price * item.quantity}
             </Text>
           </View>
         </View>
+        <View style={{ padding: 5, marginVertical: 5 }}>
+          <TouchableOpacity
+            onPress={() => increaseQuantity(item)}
+            style={styles.plusbtnStyle}
+          >
+            <FontAwesome
+              name="plus"
+              size={14}
+              color="white"
+              style={styles.icon}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => decreaseQuantity(item)}
+            style={styles.minusbtnStyle}
+          >
+            <FontAwesome
+              name="minus"
+              size={14}
+              color="white"
+              style={styles.icon}
+            />
+          </TouchableOpacity>
+        </View>
+
         <TouchableOpacity
-          onPress={() => onDelete(item.id)}
+          onPress={() => removeItemFromCart(item)}
           style={styles.btnStyle}
         >
           <FontAwesome
             name="close"
-            size={24}
+            size={20}
             color="white"
-            style={styles.icon}
+            style={styles.closeicon}
           />
         </TouchableOpacity>
       </View>
@@ -128,14 +182,19 @@ const CartScreen = () => {
       <MyStatusBar backgroundColor="#5E8D48" barStyle="light-content" />
       <View>
         <SafeAreaView style={styles.mainBody}>
-          <Text style={styles.headerText}>My Cart</Text>
           <View style={styles.container}>
             <FlatList
-              data={data}
+              data={cartItems}
               renderItem={renderItems}
               keyExtractor={(item) => item.id}
             />
           </View>
+          <Text style={styles.total}>
+            Your Total: <Text style={styles.total2}> Rs. {total}</Text>{" "}
+          </Text>
+          <TouchableOpacity style={styles.button}>
+            <Text style={styles.text}> 💸 Cash Out</Text>
+          </TouchableOpacity>
         </SafeAreaView>
       </View>
     </>
@@ -157,9 +216,10 @@ const styles = StyleSheet.create({
     marginTop: 15,
   },
   container: {
+    // flex: 1,
     padding: 24,
   },
-  FLatListContainer: {
+  FlatListContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
@@ -175,14 +235,62 @@ const styles = StyleSheet.create({
   },
   btnStyle: {
     backgroundColor: "red",
-    padding: 10,
-    borderRadius: 75,
+    padding: 3,
+    borderRadius: 5,
     justifyContent: "center",
     alignItems: "center",
+  },
+  plusbtnStyle: {
+    backgroundColor: "green",
+    padding: 5,
+    borderRadius: 50,
+    alignItems: "center",
+    marginBottom: 5,
+    width: 30,
+    height: 30,
+  },
+  minusbtnStyle: {
+    backgroundColor: "#e01932",
+    padding: 5,
+    borderRadius: 50,
+    marginBottom: 5,
+    width: 30,
+    height: 30,
   },
   icon: {
     height: 20,
     justifyContent: "center",
     alignSelf: "center",
+    alignContent: "center",
+    marginTop: 3,
+  },
+  closeicon: {
+    height: 30,
+    width: 30,
+    paddingTop: 4,
+    paddingLeft: 6,
+  },
+  total: {
+    marginLeft: 25,
+    fontSize: "24",
+    fontWeight: "bold",
+  },
+  total2: {
+    marginLeft: 25,
+    fontSize: "24",
+    fontWeight: "bold",
+    color: "red",
+  },
+  button: {
+    backgroundColor: "#3a7c53",
+    borderRadius: 15,
+    padding: 10,
+    margin: 14,
+  },
+  text: {
+    color: "white",
+    fontWeight: "bold",
+    textAlign: "center",
+    fontSize: 16,
   },
 });
