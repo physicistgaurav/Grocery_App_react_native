@@ -27,15 +27,16 @@ Note: Make sure you have Node.js and npm installed on your machine.
 <h2>Usage</h2>
 
 Once you have the development server up and running, you can open the app in an Android or iOS simulator or run it on a physical device. The app comes with a simple and intuitive user interface that allows users to browse, search, and add fruits to their cart.
-Contributing
+
+<h2>Contributing</h2>
 
 If you'd like to contribute to the development of FruitsApp React Native, you're more than welcome to do so! Simply fork the repository, make your changes, and submit a pull request.
 
-<h2>Usage</h2>
+<h2>Credits</h2>
 
 The design of FruitsApp React Native is based on a Dribbble design by Janez Puhan. Special thanks to Janez for providing the inspiration for this project.
 
-<h2License</h2>
+<h2>License</h2>
 
 FruitsApp React Native is licensed under the MIT License. See LICENSE for more information.
 
