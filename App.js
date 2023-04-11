@@ -4,9 +4,9 @@ import { NavigationContainer } from "@react-navigation/native";
 import { Provider } from "react-redux";
 import { LogBox } from "react-native";
 
-import AppStack from "./navigation/AppStack";
+import AppStack from "./src/navigation/AppStack";
 
-import store from "./store";
+import store from "./src/store";
 
 LogBox.ignoreLogs(["Warning: ..."]); // Ignore log notification by message
 LogBox.ignoreAllLogs(); //Ignore all log notifications

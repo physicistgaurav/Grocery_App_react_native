@@ -7,7 +7,7 @@ export const productData = [
     rating: 4.8,
     description:
       "The banana pulp contains minerals and vitamins useful and necessary for the human body: Vitamins of group B,E,C.",
-    myImage: [require("../assets/bananarb2.png")],
+    images: [require("../assets/bananarb2.png")],
     screenName: "banana",
   },
   {
@@ -18,7 +18,7 @@ export const productData = [
     rating: 3.6,
     description:
       "Why did the peach switch to Androod? Because it couldn't handle the 'Apple' obsession! ",
-    myImage: require("../assets/peachrb.png"),
+    images: [require("../assets/peachrb.png")],
     screenName: "peach",
   },
   {
@@ -29,7 +29,7 @@ export const productData = [
     rating: 4.2,
     description:
       "Why did the Apple employee bring a ladder to work? Because they wanted to reach the 'iCloud'!",
-    myImage: require("../assets/applerb.png"),
+    images: [require("../assets/applerb.png")],
     screenName: "apple",
   },
   {
@@ -40,7 +40,7 @@ export const productData = [
     rating: 4.5,
     description:
       "What did the programmer say to the mango? 'Can I take a 'byte' out of you?'",
-    myImage: require("../assets/mangoess.png"),
+    images: [require("../assets/mangoess.png")],
     screenName: "mango",
   },
   {
@@ -51,7 +51,7 @@ export const productData = [
     rating: 4.4,
     description:
       "What did the smartphone say to the watermelon? 'You're one in a 'melon'!'",
-    myImage: require("../assets/melonn.png"),
+    images: [require("../assets/melonn.png")],
     screenName: "melon",
   },
   {
@@ -62,7 +62,7 @@ export const productData = [
     rating: 3.9,
     description:
       "Why did the orange go to the doctor? Because it wasn't peeling well!",
-    myImage: require("../assets/orangesrb.png"),
+    images: [require("../assets/orangesrb.png")],
     screenName: "oranges",
   },
 ];

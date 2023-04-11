@@ -1,12 +1,13 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import AppleScreen from "../Screens/AppleScreen";
-import BananaScreen from "../Screens/BananaScreen";
-import CartScreen from "../Screens/CartScreen";
-import HomeScreen from "../Screens/HomeScreen";
-import MangoScreen from "../Screens/MangoScreen";
-import OrangeScreen from "../Screens/OrangeScreen";
-import PeachScreen from "../Screens/PeachScreen";
-import WaterMelonScreen from "../Screens/WaterMelonScreen";
+import AppleScreen from "../screens/AppleScreen";
+import BananaScreen from "../screens/BananaScreen";
+import CartScreen from "../screens/CartScreen";
+import HomeScreen from "../screens/HomeScreen";
+import MangoScreen from "../screens/MangoScreen";
+import OrangeScreen from "../screens/OrangeScreen";
+import PeachScreen from "../screens/PeachScreen";
+import ProductScreen from "../screens/ProductScreen";
+import WaterMelonScreen from "../screens/WaterMelonScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -16,6 +17,11 @@ const AppStack = () => {
       <Stack.Screen
         name="Home"
         component={HomeScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="ProductDetail"
+        component={ProductScreen}
         options={{ headerShown: false }}
       />
       <Stack.Screen

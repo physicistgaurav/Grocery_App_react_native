@@ -170,10 +170,16 @@ const HomeScreen = ({ navigation }) => {
           renderItem={({ item }) => (
             <TouchableOpacity
               style={styles.box}
-              onPress={() => navigation.navigate(item.screenName)}
+              onPress={() =>
+                navigation.navigate("ProductDetail", { productId: item.id })
+              }
             >
               <View style={styles.box}>
-                <Image style={styles.cardImage} source={item.image} />
+                <Image
+                  style={styles.cardImage}
+                  source={item.images[0]}
+                  resizeMode="cover"
+                />
                 <Text style={styles.cardText}>{item.name}</Text>
                 <Text style={styles.cardPrice}>रु {item.price}</Text>
               </View>
