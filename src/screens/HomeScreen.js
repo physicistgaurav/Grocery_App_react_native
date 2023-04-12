@@ -236,7 +236,7 @@ const styles = StyleSheet.create({
   },
   cardPrice: {
     fontSize: 16,
-    color: "#e28743",
+    color: "red",
     alignSelf: "flex-start",
     paddingLeft: 10,
     fontWeight: "bold",

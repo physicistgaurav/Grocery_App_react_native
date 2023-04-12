@@ -133,7 +133,7 @@ const CartScreen = () => {
                 color: "#dc364b",
               }}
             >
-              Rs.{item.price * item.quantity}
+              रु{item.price * item.quantity}
             </Text>
           </View>
         </View>
@@ -190,7 +190,7 @@ const CartScreen = () => {
             />
           </View>
           <Text style={styles.total}>
-            Your Total: <Text style={styles.total2}> Rs. {total}</Text>{" "}
+            Your Total: <Text style={styles.total2}> रु {total}</Text>{" "}
           </Text>
           <TouchableOpacity style={styles.button}>
             <Text style={styles.text}> 💸 Cash Out</Text>
