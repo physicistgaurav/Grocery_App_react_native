@@ -1,8 +1,8 @@
-<h1>FruitsApp React Native</h1>
+<h1>GroceryApp React Native</h1>
 
 
 
-FruitsApp React Native is a simple mobile application built with React Native that allows users to browse and search for different types of fruits, add them to their cart, and manage their cart. The app is designed to be simple, user-friendly, and easy to navigate.
+GroceryApp React Native is a simple mobile application built with React Native that allows users to browse and search for different types of fruits,vegtables, nuts and drink and add them to their cart, and manage their cart for prices and details in the cart. The app is designed to be simple, user-friendly, and easy to navigate.For the time being, only fruits dataset has been used
 Features
 
 <h2>The app comes with the following features:</h2>
@@ -34,14 +34,11 @@ If you'd like to contribute to the development of FruitsApp React Native, you're
 
 <h2>Credits</h2>
 
-The design of FruitsApp React Native is based on a Dribbble design by Janez Puhan. Special thanks to Janez for providing the inspiration for this project.
+The design of FruitsApp React Native is based on a Dribbble, but with little customization. Functionalities idea are self thought.
 
-<h2>License</h2>
-
-FruitsApp React Native is licensed under the MIT License. See LICENSE for more information.
 
 ![](/ui1.jpg)
 
-![](/ui2.jpg)
+![](/fui2.jpg)
 
-![](/ui3.jpg)
+![](/fui3.jpg)
